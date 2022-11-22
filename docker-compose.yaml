@@ -15,13 +15,15 @@ services:
       - dev
 
   db:
-    image: mariadb:10.7.1
+    image: mariadb:10.8.2
     container_name: mariadb_docker
     restart: always
+    ports:
+      - "3307:3306"
     volumes:
       - db-data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 'ChangeMeLater'
+      MYSQL_ROOT_PASSWORD: '!ChangeMeLater!'
     networks:
       - dev
 
