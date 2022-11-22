@@ -1,0 +1,17 @@
+:root{
+    --dark-color: #012E40;
+    --primary-color: #3CA6A6;
+    --white-color: #F2E3D5;
+    --radius: 8px;
+    --padding: 10px;
+}
+.container{
+    height: calc(100vh - 100px);
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    overflow: auto;
+    border-bottom: 1px solid var(--primary-color);
+    padding: calc(2 * var(--padding)) !important;
+    border-radius: var(--radius) var(--radius) 0 0;
+}

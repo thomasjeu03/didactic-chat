@@ -1,0 +1,15 @@
+.SideBar{
+    position: fixed;
+    bottom: calc(2 * var(--padding));
+    left: calc(2 * var(--padding));
+    background: var(--dark-color);
+    width: calc(100% - calc(4 * var(--padding)));
+    display: flex;
+    z-index: 100;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+    padding: var(--padding) !important;
+    border-radius: var(--radius);
+}
