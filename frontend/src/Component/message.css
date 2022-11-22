@@ -1,0 +1,16 @@
+.message{
+    border-radius: var(--radius) var(--radius) var(--radius) 0;
+    padding: var(--padding);
+    margin: var(--padding);
+    background: var(--dark-color);
+    color: var(--white-color);
+}
+.message .username{
+    font-size: 13px;
+    opacity: 0.4;
+}
+.messageFromMe{
+    border-radius: var(--radius) var(--radius) 0 var(--radius);
+    background: var(--primary-color);
+    color: var(--dark-color);
+}
