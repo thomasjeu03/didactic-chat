@@ -19,7 +19,7 @@ export default function Home() {
             <h1 className='mb-3'>Listing users</h1>
             {users.map((user) => {
                 return (
-                    <div className='p-3 user rounded mb-3 mx-5'>
+                    <div key={user.username.toString()} className='p-3 user rounded mb-3 mx-5' style={{ backgroundColor: 'black' }}>
                         <NavLink to={`/chat/${buildTopicName(user.id)}`}
                                  className='text-white text-decoration-none w-100 d-block text-center'>
                             {user.username}

@@ -98,6 +98,23 @@
       <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/paragonie/sodium_compat" />
       <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/firebase/php-jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/evenement/evenement" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/thruway/client" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/thruway/ratchet-transport" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/voryx/thruway" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/voryx/thruway-common" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/cboden/ratchet" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/react/promise-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/react/event-loop" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/react/stream" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/react/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/react/dns" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/react/socket" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/react/promise" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/ratchet/rfc6455" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -95,6 +95,23 @@
       <path value="$PROJECT_DIR$/symfony_project/vendor/paragonie/random_compat" />
       <path value="$PROJECT_DIR$/symfony_project/vendor/paragonie/sodium_compat" />
       <path value="$PROJECT_DIR$/symfony_project/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/evenement/evenement" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/thruway/client" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/thruway/ratchet-transport" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/voryx/thruway" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/voryx/thruway-common" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/cboden/ratchet" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/react/promise-timer" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/react/event-loop" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/react/stream" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/react/cache" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/react/dns" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/react/socket" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/ratchet/rfc6455" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

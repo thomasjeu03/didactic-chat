@@ -16,7 +16,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
 
     const getJWT = async (usr, pwd) => {
-        const data = await fetch('http://localhost:8245/login', {
+        const data = await fetch('http://localhost:8245/login1', {
             method: 'POST',
             headers: new Headers({
                 'Content-type': 'application/x-www-form-urlencoded'
@@ -42,7 +42,7 @@ export default function Login() {
         getJWT(username, password)
             .then(data => {
                 dispatch(LoginAction(data));
-                dispatch(Connect(data));
+                /*dispatch(Connect(data));*/
             })
             .then(() => navigate(from, {replace: true}));
     }
