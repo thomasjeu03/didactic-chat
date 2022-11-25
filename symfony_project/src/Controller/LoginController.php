@@ -11,8 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LoginController extends AbstractController
 {
-    #[Route('/login', name: 'user_login')]
-    public function login(string $appSecret): JsonResponse
+    #[Route('/login1', name: 'user_login')]
+    public function login(): JsonResponse
     {
         /** @var $user ?User */
         $user = $this->getUser();
@@ -26,7 +26,7 @@ class LoginController extends AbstractController
         $jwt = JWT::encode([
             'username' => $user->getUsername(),
             'id' => $user->getId()
-        ], $appSecret, 'HS256');
+        ], 'cf7b631405b95f5495c0505dd9b099fc', 'HS256');
 
         return $this->json([
             'jwt' => $jwt
