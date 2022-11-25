@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordC
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class BasicAuthenticator extends AbstractLoginFormAuthenticator
+class LoginAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
@@ -25,7 +25,7 @@ class BasicAuthenticator extends AbstractLoginFormAuthenticator
     {
     }
 
-    public function supports(Request $request): bool
+    public function supports(Request $request): ?bool
     {
         return $request->attributes->get('_route') === 'user_login'
             && $request->isMethod('POST');
@@ -33,16 +33,9 @@ class BasicAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $username = $request->request->get('username', '');
-
-        $request->getSession()->set(Security::LAST_USERNAME, $username);
-
         return new Passport(
-            new UserBadge($username),
-            new PasswordCredentials($request->request->get('password', '')),
-            [
-                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
-            ]
+            new UserBadge($request->request->get('username')),
+            new PasswordCredentials($request->request->get('password'))
         );
     }
 
