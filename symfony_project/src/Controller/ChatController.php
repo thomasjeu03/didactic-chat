@@ -66,6 +66,6 @@ class ChatController
         return $this->json([
             'status' => 1,
             'message' => "Message sent"
-        ], Response::HTTP_CREATED);#
+        ], Response::HTTP_CREATED);
     }
 }

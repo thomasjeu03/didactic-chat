@@ -23,6 +23,6 @@ class PrivateTopicHelper
 
     public function isUserInThisTTopic(int $userId, string $chatTopic): bool
     {
-        return in_array($userId, $this->getUsersFromChatTopic($chatTopic));#
+        return in_array($userId, $this->getUsersFromChatTopic($chatTopic));
     }
 }
