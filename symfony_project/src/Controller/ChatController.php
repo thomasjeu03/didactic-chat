@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Helper\PrivateTopicHelper;
 use App\Repository\ChatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Message;
