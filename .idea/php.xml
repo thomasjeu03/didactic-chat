@@ -90,6 +90,11 @@
       <path value="$PROJECT_DIR$/symfony_project/vendor/symfony/property-info" />
       <path value="$PROJECT_DIR$/symfony_project/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/symfony_project/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/lexik/jwt-authentication-bundle" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/paragonie/sodium_compat" />
+      <path value="$PROJECT_DIR$/symfony_project/vendor/firebase/php-jwt" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
