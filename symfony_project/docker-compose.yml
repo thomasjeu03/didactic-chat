@@ -15,6 +15,9 @@ services:
         cors_origins http://localhost:8245
     # Comment the following line to disable the development mode
     command: /usr/bin/caddy run -config /etc/caddy/Caddyfile.dev
+    ports:
+      - "1234:80"
+      - "443:443"
     volumes:
       - mercure_data:/data
       - mercure_config:/config

@@ -25,15 +25,14 @@ class BasicAuthenticator extends AbstractLoginFormAuthenticator
 
     public function supports(Request $request): bool
     {
-        return $request->attributes->get('_route') === 'user_login'
-            && $request->isMethod('POST');
+        return $request->attributes->get('_route') === 'app_login';
     }
 
     public function authenticate(Request $request): Passport
     {
         return new Passport(
-            new UserBadge($request->request->get('username')),
-            new PasswordCredentials($request->request->get('password'))
+            new UserBadge($request->headers->get('php-auth-user') ?? ''),
+            new PasswordCredentials($request->headers->get('php-auth-pw') ?? '')
         );
     }
 
