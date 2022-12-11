@@ -8,17 +8,14 @@ use Symfony\Component\HttpFoundation\Cookie;
 
 class CookieHelper
 {
-
-    private string $mercureSecret;
     private JWTHelper $JWTHelper;
 
-    public function __construct(string $mercureSecret, JWTHelper $JWTHelper)
+    public function __construct(JWTHelper $JWTHelper)
     {
-        $this->mercureSecret = $mercureSecret;
         $this->JWTHelper = $JWTHelper;
     }
 
-    public function createMercureCookie(User $user): string
+    public function buildCookie(User $user): string
     {
         $jwt = $this->JWTHelper->createJWT($user);
 

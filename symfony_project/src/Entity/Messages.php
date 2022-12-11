@@ -61,6 +61,13 @@ class Messages
         return $this;
     }
 
+    public function setUser(?User $user): self
+    {
+        $this->User = $user;
+
+        return $this;
+    }
+
     public function getChat(): ?Chat
     {
         return $this->Chat;

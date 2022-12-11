@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Helper\CookieHelper;
+use App\Helper\JWTHelper;
 use Firebase\JWT\JWT;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,25 +13,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LoginController extends AbstractController
 {
-    #[Route('/login1', name: 'user_login')]
-    public function login(): JsonResponse
+    #[Route('/login', name: 'app_login')]
+    public function login(CookieHelper $cookieHelper, JWTHelper $JWTHelper): JsonResponse
     {
         /** @var $user ?User */
         $user = $this->getUser();
 
-        if (null === $user) {
-            return $this->json([
-                'message' => 'missing credentials'
-            ], Response::HTTP_UNAUTHORIZED);
+        if ($user) {
+            return $this->json(
+                [
+                    'jwt' => $JWTHelper->createJWT($user),
+                    'user' => $user
+                ],
+                200,
+                ['set-cookie' => $cookieHelper->buildCookie($user)]
+            );
         }
 
-        $jwt = JWT::encode([
-            'username' => $user->getUsername(),
-            'id' => $user->getId()
-        ], 'cf7b631405b95f5495c0505dd9b099fc', 'HS256');
-
-        return $this->json([
-            'jwt' => $jwt
-        ]);
+        return $this->json(
+            [
+                'message' => 'bad credentials',
+                'user' => $user
+            ], 401);
     }
 }

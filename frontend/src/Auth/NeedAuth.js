@@ -1,11 +1,13 @@
 import {Navigate, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {useContext} from "react";
+import {userContext} from "../Context/UserContext";
 
 export default function NeedAuth(props) {
     let location = useLocation();
-    const storedUser = useSelector(store => store.SigninReducer);
+    const [loggedUser, storedUser] = useContext(userContext);
 
-    if (storedUser) {
+    if (loggedUser) {
         return props.children;
     } else {
         return <Navigate to='/login' state={{from: location}}/>

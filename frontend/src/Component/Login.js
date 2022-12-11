@@ -1,35 +1,23 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {LoginAction} from "../Action/LoginAction";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Connect} from "../Action/WebsocketAction";
+import useGetJWT from "../Hook/useGetJWT";
+import {userContext} from "../Context/UserContext";
 
 export default function Login() {
-
-    const dispatch = useDispatch();
-
     const navigate = useNavigate();
-    const location = useLocation();
+    let location = useLocation();
     let from = location.state?.from?.pathname || '/';
+
+
+    const getJWT = useGetJWT();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loggedUser, setLoggedUser] = useContext(userContext);
 
-    const getJWT = async (usr, pwd) => {
-        const data = await fetch('http://localhost:8245/login1', {
-            method: 'POST',
-            headers: new Headers({
-                'Content-type': 'application/x-www-form-urlencoded'
-            }),
-            body: new URLSearchParams({
-                username: usr,
-                password: pwd
-            })
-        });
-
-        const json = await data.json();
-        return await json.jwt;
-    }
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
@@ -39,12 +27,15 @@ export default function Login() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        getJWT(username, password)
-            .then(data => {
-                dispatch(LoginAction(data));
-                /*dispatch(Connect(data));*/
-            })
-            .then(() => navigate(from, {replace: true}));
+        getJWT(username, password).then(data => {
+            if (data.jwt) {
+                setLoggedUser(data);
+                navigate(from, {replace: true});
+            } else {
+                console.log(data);
+                console.log('no data jwt');
+            }
+        });
     }
 
     return (

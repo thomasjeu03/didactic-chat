@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Messages;
 use App\Entity\User;
 use App\Helper\PrivateTopicHelper;
 use App\Repository\ChatRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Message;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ChatController
+class ChatController extends AbstractController
 {
     #[Route('/chat/{topic}', name: 'chat_getMessage', methods: 'GET')]
     #[IsGranted('ROLE_USER')]
@@ -54,7 +55,7 @@ class ChatController
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $message = new Message();
+        $message = new Messages();
         $message->setUser($user)
             ->setChat($chat)
             ->setDate(new \DateTime())

@@ -6,25 +6,28 @@ import NeedAuth from "./Auth/NeedAuth";
 import Home from "./Component/Home";
 import Sidebar from "./Component/Sidebar";
 import ChatRoom from "./Component/ChatRoom";
+import UserProvider from './Context/UserContext';
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path={'/'} element={
-                    <NeedAuth>
-                        <Home/>
-                    </NeedAuth>
-                }/>
-                <Route path='/login' element={<Login/>}/>
-                <Route path='/chat/:topic' element={
-                    <NeedAuth>
-                        <ChatRoom/>
-                    </NeedAuth>
-                }/>
-            </Routes>
-            <Sidebar/>
-        </BrowserRouter>
+        <UserProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path={'/'} element={
+                        <NeedAuth>
+                            <Home/>
+                        </NeedAuth>
+                    }/>
+                    <Route path='/login' element={<Login/>}/>
+                    <Route path='/chat/:topic' element={
+                        <NeedAuth>
+                            <ChatRoom/>
+                        </NeedAuth>
+                    }/>
+                </Routes>
+                <Sidebar/>
+            </BrowserRouter>
+        </UserProvider>
     );
 }
 
