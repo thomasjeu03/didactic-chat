@@ -27,8 +27,7 @@ class LoginController extends AbstractController
                 [
                     'jwt' => $jwt,
                     'valid jwt?' => $JWTHelper->isJwtValid($jwt),
-                    'user' => $user,
-                    'other users' => $userRepository->findAllExcept($user)
+                    'user' => $user
                 ],
                 200,
                 ['set-cookie' => $cookieHelper->buildCookie($user)]

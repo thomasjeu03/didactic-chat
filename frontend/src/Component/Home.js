@@ -11,8 +11,8 @@ export default function Home() {
 
     useEffect(() => {
         getUserList().then(data => {
-            setUsers(data.user);
-            console.log(data.user)
+            setUsers(data.users);
+            console.log(data)
         })
     }, []);
 
