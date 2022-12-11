@@ -12,18 +12,18 @@ export default function Home() {
     useEffect(() => {
         getUserList().then(data => {
             setUsers(data.user);
+            console.log(data.user)
         })
     }, []);
 
     return (
         <div className='container' style={{height: '100vh', overflow: 'auto'}}>
-
             <h1 className='mb-3'>Listing users</h1>
-            {users?.map((user) => (
-                <div className='p-3 user rounded mb-3 mx-5' key={user.id}>
-                    <NavLink to={`/chat/${(user.id)}`}
+            {users?.map((u) => (
+                <div className='p-3 user rounded mb-3 mx-5' key={u.id}>
+                    <NavLink to={`/chat/${(u.id)}`}
                              className='text-white text-decoration-none w-100 d-block text-center'>
-                        {user.username}
+                        {u.username}
                     </NavLink>
                 </div>
             ))}

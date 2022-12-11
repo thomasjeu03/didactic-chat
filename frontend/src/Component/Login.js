@@ -29,18 +29,18 @@ export default function Login() {
         e.preventDefault();
         getJWT(username, password).then(data => {
             if (data.jwt) {
-                setLoggedUser(data);
+                setLoggedUser(data.jwt);
                 navigate(from, {replace: true});
             } else {
-                console.log(data);
                 console.log('no data jwt');
+                console.log(data);
             }
         });
     }
 
     return (
         <div className='container'>
-            <h1>Please Login</h1>
+            <h1>Currently logged in as </h1>
 
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">

@@ -7,7 +7,7 @@ export default function NeedAuth(props) {
     let location = useLocation();
     const [loggedUser, storedUser] = useContext(userContext);
 
-    if (loggedUser) {
+    if (loggedUser || storedUser) {
         return props.children;
     } else {
         return <Navigate to='/login' state={{from: location}}/>

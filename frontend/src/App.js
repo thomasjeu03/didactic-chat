@@ -7,8 +7,10 @@ import Home from "./Component/Home";
 import Sidebar from "./Component/Sidebar";
 import ChatRoom from "./Component/ChatRoom";
 import UserProvider from './Context/UserContext';
+import {useEffect} from "react";
 
 function App() {
+
     return (
         <UserProvider>
             <BrowserRouter>

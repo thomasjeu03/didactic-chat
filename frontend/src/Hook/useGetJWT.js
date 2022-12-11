@@ -4,7 +4,7 @@ export default function useGetJWT() {
         const credentials = btoa(`${username}:${password}`);
 
         return fetch(`http://localhost:8245/login`, {
-            method: 'GET',
+            method: 'POST',
             credentials: 'include',
             mode: 'cors',
             headers: {
