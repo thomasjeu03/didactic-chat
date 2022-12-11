@@ -17,7 +17,7 @@ class UserListController extends AbstractController
     public function userList(UserRepository $userRepository): JsonResponse
     {
         return $this->json([
-            'user' => $userRepository->findAllCustom()
+            'users' => $userRepository->findAllCustom()
         ], 200, [], ['groups' => 'main']);
     }
 }
