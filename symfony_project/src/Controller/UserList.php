@@ -19,7 +19,8 @@ class UserList extends AbstractController
         return $this->json([
             'message' => 'users list :',
             'current user' => $user,
-            'other users' => $userRepository->findAllExcept($this->getUser())
+            'other users' => $userRepository->findAllExcept($this->getUser()),
+            'all users' => $userRepository->findAll()
         ], 200, [], ['groups' => 'main']);
     }
 }
