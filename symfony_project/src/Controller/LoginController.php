@@ -19,10 +19,13 @@ class LoginController extends AbstractController
         /** @var $user ?User */
         $user = $this->getUser();
 
+        $jwt = $JWTHelper->createJWT($user);
+
         if ($user) {
             return $this->json(
                 [
-                    'jwt' => $JWTHelper->createJWT($user),
+                    'jwt' => $jwt,
+                    'valid jwt?' => $JWTHelper->isJwtValid($jwt),
                     'user' => $user
                 ],
                 200,

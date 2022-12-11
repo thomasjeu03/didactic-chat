@@ -115,6 +115,12 @@
       <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/react/socket" />
       <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/react/promise" />
       <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/ratchet/rfc6455" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/phpstan/phpdoc-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/symfony/serializer" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/phpdocumentor/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/symfony_project/vendor/phpdocumentor/reflection-common" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
