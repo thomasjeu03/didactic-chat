@@ -1,7 +1,10 @@
 import {useSelector} from "react-redux";
+import {useContext} from "react";
+import { userContext } from "../Context/UserContext";
 
 export default function useGetConversation() {
-    const storedUser = useSelector(store => store.SigninReducer);
+    const storedUser = useContext(userContext);
+    // const storedUser = useSelector(store => store.SigninReducer);
 
     return function (topic) {
         return fetch(`http://localhost:8245/chat/${topic}`, {
@@ -9,7 +12,7 @@ export default function useGetConversation() {
             credentials: 'include',
             mode: 'cors',
             headers: {
-                'Authorization': `Bearer ${storedUser}`
+                'Authorization': `Bearer ${storedUser.jwt}`
             }
         })
             .then(res => res.json())

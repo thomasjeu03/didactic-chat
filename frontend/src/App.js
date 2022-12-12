@@ -22,9 +22,7 @@ function App() {
                     }/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/chat/:topic' element={
-                        <NeedAuth>
-                            <ChatRoom/>
-                        </NeedAuth>
+                        <ChatRoom/>
                     }/>
                 </Routes>
                 <Sidebar/>

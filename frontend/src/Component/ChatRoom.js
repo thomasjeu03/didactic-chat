@@ -1,7 +1,9 @@
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import useGetConversation from "../Hook/useGetConversation";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
+import { userContext } from "../Context/UserContext";
+import { hubContext } from "../Context/HubContext"; 
 import useGetCurrentUserId from "../Hook/useGetCurrentUserId";
 import Message from "./Message";
 import useGetCurrentUserUsername from "../Hook/useGetCurrentUserUsername";
@@ -9,7 +11,9 @@ import usePersistMessage from "../Hook/usePersistMessage";
 
 export default function ChatRoom() {
     const {topic} = useParams();
-    const session = useSelector(store => store.SessionReducer)
+    // const [storedHub, setStoredHub] = useContext(hubContext); 
+    const [storedUser, setStoredUser] = useContext(userContext);
+    console.log(storedUser); 
 
     const getConversation = useGetConversation();
     const currentUserId = useGetCurrentUserId();
@@ -44,13 +48,13 @@ export default function ChatRoom() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const stringTopic = topic;
-        session.publish(stringTopic,
-            [newMessage],
-            {
-                senderId: currentUserId,
-                senderUsername: currentUserUsername
-            }
-        );
+        // storedHub(stringTopic,
+        //     [newMessage],
+        //     {
+        //         senderId: currentUserId,
+        //         senderUsername: currentUserUsername
+        //     }
+        // );
         setMessages(prevState => [
             {
                 content: newMessage,
@@ -76,16 +80,16 @@ export default function ChatRoom() {
 
         });
 
-        const stringTopic = topic;
-        let subscription;
-        session.subscribe(stringTopic, onEvent)
-            .then((sub) => {
-                subscription = sub
-            });
+        // const stringTopic = topic;
+        // let subscription;
+        // session.subscribe(stringTopic, onEvent)
+        //     .then((sub) => {
+        //         subscription = sub
+        //     });
 
-        return () => {
-            session.unsubscribe(subscription);
-        }
+        // return () => {
+        //     session.unsubscribe(subscription);
+        // }
     }, [])
 
     return (

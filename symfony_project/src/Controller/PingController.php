@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Helper\CookieHelper;
+use App\Service\CookieHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
@@ -16,8 +16,8 @@ class PingController extends AbstractController
     {
         $update = new Update(
             [
-                "https://example.com/my-private-topic",
-                "https://example.com/user/{$user->getId()}/?topic=" . urlencode("https://example.com/my-private-topic")
+                // "http://127.0.0.1:1234/.well-known/mercure",
+                "http://127.0.0.1:1234/.well-known/mercure/?topic=" . urlencode("http://127.0.0.1:1234/my-private-topic")
             ],
             json_encode([
                 'user' => $user->getUsername(),

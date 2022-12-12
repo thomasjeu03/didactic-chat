@@ -1,6 +1,8 @@
 import {useSelector} from "react-redux";
+import {useContext} from "react";
+import { userContext } from "../Context/UserContext";
 
 export default function useGetCurrentUserId() {
-    const storedUser = useSelector(store => store.SigninReducer);
-    return JSON.parse(atob(storedUser.split('.')[1])).id;
+    const storedUser = useContext(userContext);
+    return storedUser.id;
 }

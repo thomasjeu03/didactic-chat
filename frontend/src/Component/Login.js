@@ -16,7 +16,7 @@ export default function Login() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loggedUser, setLoggedUser] = useContext(userContext);
+    const [storedUser, setStoredUser] = useContext(userContext);
 
 
     const handleUsername = (e) => {
@@ -28,8 +28,13 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         getJWT(username, password).then(data => {
-            if (data.jwt) {
-                setLoggedUser(data.jwt);
+            if (data) {
+                const user = {
+                    'user': data.user, 
+                    'jwt': data.jwt
+                }
+                console.log(user);
+                setStoredUser(user);
                 navigate(from, {replace: true});
             } else {
                 console.log('no data jwt');
