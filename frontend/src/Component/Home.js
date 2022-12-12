@@ -34,8 +34,8 @@ export default function Home() {
 
     useEffect(() => {
         getUserList().then(data => {
-            setUsers(data.user);
-            console.log(data.user)
+            setUsers(data.users);
+            console.log(data)
         })
 
         const url = new URL('http://127.0.0.1:1234/.well-known/mercure');

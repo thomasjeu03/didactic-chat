@@ -77,4 +77,29 @@ class ChatRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function findChatByParticipants(int $otherUserId, int $myId)
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb
+            ->select($qb->expr()->count('p.chat'))
+            ->innerJoin('c.participants', 'p')
+            ->where(
+                $qb->expr()->eq('p.user',':me'),
+                $qb->expr()->eq('p.user',':otherUSer')
+            )
+            ->groupBy('p.chat')
+            ->having(
+                $qb->expr()->eq(
+                    $qb->expr()->count('p.chat'),
+                    2
+                )
+            )
+            ->setParameter([
+                'me' => $myId,
+                'otherUser' => $otherUserId
+            ])
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

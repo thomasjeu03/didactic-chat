@@ -3,79 +3,83 @@
 namespace App\Entity;
 
 use App\Repository\MessagesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MessagesRepository::class)]
 class Messages
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    private $id;
 
-    #[ORM\OneToMany(mappedBy: 'messages', targetEntity: User::class)]
-    private Collection $User;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['main'])]
+    private $user;
 
-    #[ORM\ManyToOne(inversedBy: 'messages')]
-    private ?Chat $Chat = null;
+    #[ORM\Column(type: 'datetime')]
+    #[Groups(['main'])]
+    private $date;
 
-    public function __construct()
-    {
-        $this->User = new ArrayCollection();
-    }
+    #[ORM\Column(type: 'text')]
+    #[Groups(['main'])]
+    private $content;
+
+    #[ORM\ManyToOne(targetEntity: Chat::class, inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $chat;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUser(): Collection
+    public function getUser(): ?User
     {
-        return $this->User;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->User->contains($user)) {
-            $this->User->add($user);
-            $user->setMessages($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->User->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getMessages() === $this) {
-                $user->setMessages(null);
-            }
-        }
-
-        return $this;
+        return $this->user;
     }
 
     public function setUser(?User $user): self
     {
-        $this->User = $user;
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }
 
     public function getChat(): ?Chat
     {
-        return $this->Chat;
+        return $this->chat;
     }
 
-    public function setChat(?Chat $Chat): self
+    public function setChat(?Chat $chat): self
     {
-        $this->Chat = $Chat;
+        $this->chat = $chat;
 
         return $this;
     }
