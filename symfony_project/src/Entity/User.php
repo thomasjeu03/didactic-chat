@@ -3,33 +3,40 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    #[Groups(['main'])]
+    private $id;
 
-    #[ORM\Column(length: 180, unique: true)]
-    private ?string $username = null;
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Groups(['main'])]
+    private $username;
 
-    #[ORM\Column]
-    private array $roles = [];
+    #[ORM\Column(type: 'json')]
+    #[Groups(['main'])]
+    private $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
-    #[ORM\Column]
-    private ?string $password = null;
+    #[ORM\Column(type: 'string')]
+    private $password;
 
-    #[ORM\ManyToOne(inversedBy: 'User')]
-    private ?Messages $messages = null;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Messages::class, orphanRemoval: true)]
+    private $messages;
+
+    public function __construct()
+    {
+        $this->messages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -101,14 +108,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getMessages(): ?Messages
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getMessages(): Collection
     {
         return $this->messages;
     }
 
-    public function setMessages(?Messages $messages): self
+    public function addMessage(Messages $messages): self
     {
-        $this->messages = $messages;
+        if (!$this->messages->contains($messages)) {
+            $this->messages[] = $messages;
+            $messages->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $messages): self
+    {
+        if ($this->messages->removeElement($messages)) {
+            // set the owning side to null (unless already changed)
+            if ($messages->getUser() === $this) {
+                $messages->setUser(null);
+            }
+        }
 
         return $this;
     }
