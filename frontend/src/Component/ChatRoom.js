@@ -77,7 +77,6 @@ export default function ChatRoom() {
             } else {
                 console.log('ce chat est vide');
             }
-
         });
 
         // const stringTopic = topic;

@@ -16,7 +16,7 @@ class PingController extends AbstractController
     {
         $update = new Update(
             [
-                // "http://127.0.0.1:1234/.well-known/mercure",
+                "http://127.0.0.1:1234/.well-known/mercure",
                 "http://127.0.0.1:1234/.well-known/mercure/?topic=" . urlencode("http://127.0.0.1:1234/my-private-topic")
             ],
             json_encode([

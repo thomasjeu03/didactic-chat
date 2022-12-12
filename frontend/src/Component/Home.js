@@ -12,7 +12,7 @@ export default function Home() {
     //const getUsername = useGetCurrentUserUsername();
     const [users, setUsers] = useState([]);
 
-    const backendPing = useBackendPing();
+    // const backendPing = useBackendPing();
 
     const navigate = useNavigate(); 
 
